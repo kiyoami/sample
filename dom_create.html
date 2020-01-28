@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .display-block {
+      display: block;
+    }
+
+    .text-blue {
+      color: blue;
+    }
+
+    .text-bold {
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script>
+  function 要素(タグ名, 属性リスト, クラス名リスト) {
+    this.作成 = (タグ名, 属性リスト, クラス名リスト) => {
+      this.実態 = document.createElement(タグ名);
+      if (typeof (属性リスト) === 'object') {
+        for (属性名 in 属性リスト) {
+          this.実態.setAttribute(属性名, 属性リスト[属性名]);
+        }
+      }
+      if (クラス名リスト instanceof Array) {
+        this.実態.classList.add(...クラス名リスト);
+      }
+      return this;
+    }
+
+    this.割当 = (要素) => {
+      this.実態 = 要素;
+      return this;
+    };
+
+    this.内部へ追記 = (内容) => {
+      if (内容 instanceof 要素) {
+        this.実態.appendChild(内容.実態);
+      } else if (typeof (内容) === 'string') {
+        this.実態.insertAdjacentText('beforeend', 内容);
+      } else {
+        console.log(内容);
+        throw '内容の型が不正';
+      }
+      return this;
+    }
+
+    if (タグ名) {
+      this.作成(タグ名, 属性リスト, クラス名リスト);
+    }
+  }
+
+  (new 要素()).割当(document.getElementById('container'))
+    .内部へ追記((new 要素('form'))
+      .内部へ追記((new 要素('label', null, ['text-blue', 'text-bold', 'display-block']))
+        .内部へ追記(new 要素('input', { type: 'checkbox', value: 1, checked: true }))
+        .内部へ追記('同意する')
+      )
+      .内部へ追記(new 要素('input', { type: 'submit' }))
+    );
+  </script>
+</body>
+
+</html>

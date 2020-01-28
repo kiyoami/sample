@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    nav {
+      height: 38px;
+      background-color: #eee;
+    }
+
+    .humberger {
+      position: relative;
+      --humberger-li-height: 1.2rem;
+    }
+
+    .humberger input[type=checkbox] {
+      display: none;
+    }
+
+    .humberger label {
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 38px;
+      height: 38px;
+    }
+
+    .humberger svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    .humberger svg line {
+      transition: 500ms all;
+      transform-origin: center;
+    }
+
+    .humberger ul {
+      margin: 0;
+      padding: 0;
+      height: 0;
+      overflow: hidden;
+      transition: 500ms all;
+      position: absolute;
+      top: 38px;
+      width: 100%;
+      background-color: white;
+    }
+
+    .humberger ul li {
+      margin: 0;
+      padding: 0;
+      height: var(--humberger-li-height);
+      font-size: 1rem;
+      line-height: 1rem;
+      border-bottom: solid thin lightgrey;
+      box-sizing: border-box;
+    }
+
+    .humberger input[type=checkbox]:checked ~ label svg line:nth-child(2) {
+      transform: rotate(405deg) translateX(0px) translateY(9px);
+    }
+
+    .humberger input[type=checkbox]:checked ~ label svg line:nth-child(3) {
+      opacity: 0;
+    }
+
+    .humberger input[type=checkbox]:checked ~ label svg line:nth-child(4) {
+      transform: rotate(495deg) translateX(0px) translateY(-9px);
+    }
+
+    .humberger input[type=checkbox]:checked ~ ul {
+      display: block;
+      height: calc(var(--humberger-li-height) * 5);
+    }
+
+    .pull-right {
+      float: right;
+      display: block;
+    }
+
+    .pull-left {
+      float: left;
+      display: block;
+    }
+
+    .clearfix::after {
+      content: "";
+      clear: both;
+    }
+
+    main {
+      display: block;
+      width: 200mm;
+      height: 300mm;
+      margin: auto;
+      background-color: aqua;
+      border: solid thin black;
+    }
+  </style>
+</head>
+<body>
+  <nav class="">
+    <div class="humberger">
+      <input type="checkbox" id="humberger-1">
+      <ul class="">
+        <li>aaa</li>
+        <li>aaa</li>
+        <li>ggg</li>
+        <li>aaa</li>
+        <li>aaa</li>
+      </ul>
+      <label for="humberger-1" class="">
+        <svg viewbox="0 0 38 38">
+          <rect x="0" y="0" width="38" height="38" rx="5" stroke="gray" fill="none" stroke-width="thin"/>
+          <line x1="8" y1="10" x2="30" y2="10" stroke="#003399" stroke-width="4"/>
+          <line x1="8" y1="19" x2="30" y2="19" stroke="#003399" stroke-width="4"/>
+          <line x1="8" y1="28" x2="30" y2="28" stroke="#003399" stroke-width="4"/>
+        </svg>
+      </label>
+    </div>
+  </nav>
+  <main>aaaaaa</main>
+</body>
+</html>
